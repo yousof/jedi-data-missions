@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/yousof/jedi-data-missions/issues"
   },
-  "homepage": "https://github.com/yousof/jedi-data-missions#readme"
+  "homepage": "https://github.com/yousof/jedi-data-missions#readme",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
 }
