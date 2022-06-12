@@ -40,6 +40,9 @@ class DataProvider {
       return id;
     } else {
       let ids = [];
+      /**
+       * @todo handle null arrays before entering the danger zone
+       */
       for (let url of urls) {
         let components = url.split('/');
         components.pop();
@@ -60,6 +63,13 @@ class DataProvider {
     return axios
       .get(url)
       .then((response) => {
+        response.data.id = this.parseEntityIds(response.data.url);
+        response.data.characters = this.parseEntityIds(response.data.characters);
+        response.data.planets = this.parseEntityIds(response.data.planets);
+        response.data.species = this.parseEntityIds(response.data.species);
+        response.data.starships = this.parseEntityIds(response.data.starships);
+        response.data.vehicles = this.parseEntityIds(response.data.vehicles);
+
         return response.data;
       })
       .catch((error) => {
@@ -79,6 +89,13 @@ class DataProvider {
     return axios
       .get(url)
       .then((response) => {
+        response.data.id = this.parseEntityIds(response.data.url);
+        response.data.homeworld = this.parseEntityIds(response.data.homeworld);
+        response.data.films = this.parseEntityIds(response.data.films);
+        response.data.species = this.parseEntityIds(response.data.species);
+        response.data.vehicles = this.parseEntityIds(response.data.vehicles);
+        response.data.starships = this.parseEntityIds(response.data.starships);
+
         return response.data;
       })
       .catch((error) => {
@@ -98,6 +115,10 @@ class DataProvider {
     return axios
       .get(url)
       .then((response) => {
+        response.data.id = this.parseEntityIds(response.data.url);
+        response.data.residents = this.parseEntityIds(response.data.residents);
+        response.data.films = this.parseEntityIds(response.data.films);
+
         return response.data;
       })
       .catch((error) => {
@@ -117,6 +138,13 @@ class DataProvider {
     return axios
       .get(url)
       .then((response) => {
+        response.data.id = this.parseEntityIds(response.data.url);
+        response.data.pilots = this.parseEntityIds(response.data.pilots);
+        response.data.films = this.parseEntityIds(response.data.films);
+        /**
+         * @todo parse the count of crew
+         */
+
         return response.data;
       })
       .catch((error) => {
@@ -136,6 +164,10 @@ class DataProvider {
     return axios
       .get(url)
       .then((response) => {
+        response.data.id = this.parseEntityIds(response.data.url);
+        response.data.pilots = this.parseEntityIds(response.data.pilots);
+        response.data.films = this.parseEntityIds(response.data.films);
+
         return response.data;
       })
       .catch((error) => {
