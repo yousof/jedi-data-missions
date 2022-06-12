@@ -5,12 +5,13 @@
  */
 const swapi = {
   url: {
-    base: "https://swapi.dev/api",
-    films: "films",
-    people: "people",
-    planets: "planets",
-    starships: "starships",
-    vehicles: "vehicles"
+    base: 'https://swapi.dev/api',
+    films: 'films',
+    people: 'people',
+    planets: 'planets',
+    species: 'species',
+    starships: 'starships',
+    vehicles: 'vehicles'
   }
 };
 
