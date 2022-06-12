@@ -1,5 +1,5 @@
-const axios = require("axios");
-const config = require("../config/config");
+const axios = require('axios');
+const config = require('../config/config');
 
 /**
  * @class
@@ -8,7 +8,6 @@ const config = require("../config/config");
 class DataProvider {
   /**
    * @constructor
-   *
    */
   constructor() {
     this.url = config.swapi.url;
@@ -21,9 +20,9 @@ class DataProvider {
    */
   makeUrl(resource, id = null) {
     if (id) {
-      return [this.url.base, resource, id].join("/");
+      return [this.url.base, resource, id].join('/');
     } else {
-      return [this.url.base, resource].join("/");
+      return [this.url.base, resource].join('/');
     }
   }
 
@@ -33,8 +32,8 @@ class DataProvider {
    * @returns id(s) of the desired entit(y/ies)
    */
   parseEntityIds(urls) {
-    if (typeof urls === "string") {
-      let components = urls.split("/");
+    if (typeof urls === 'string') {
+      let components = urls.split('/');
       components.pop();
       let id = parseInt(components.pop());
       return id;
@@ -44,12 +43,24 @@ class DataProvider {
         return ids;
       }
       for (let url of urls) {
-        let components = url.split("/");
+        let components = url.split('/');
         components.pop();
         ids.push(parseInt(components.pop()));
       }
       return ids;
     }
+  }
+
+  /**
+   * Parses a string containing integerseparated with radix character
+   * @param {string} number a number string
+   * @returns {number} clean and parsed number
+   */
+  parseIntegerWithRadixCharacter(number) {
+    while (number.includes(',')) {
+      number = number.replace(',', '');
+    }
+    return parseInt(number);
   }
 
   /**
