@@ -1,15 +1,14 @@
-const axios = require("axios");
-const config = require("../config/config");
+const axios = require('axios');
+const config = require('../config/config');
 
 /**
  * @class
  * The base class for getting data from https://swapi.dev
  */
-
 class DataProvider {
   /**
    * @constructor
-   * 
+   *
    */
   constructor() {
     this.url = config.swapi.url;
@@ -22,9 +21,31 @@ class DataProvider {
    */
   makeUrl(resource, id = null) {
     if (id) {
-      return [this.url.base, resource, id].join("/");
+      return [this.url.base, resource, id].join('/');
     } else {
-      return [this.url.base, resource].join("/");
+      return [this.url.base, resource].join('/');
+    }
+  }
+
+  /**
+   * Parses the URL(s) and returns the ID(s) of the entit(y/ies)
+   * @param urls the URL(s) to the desired entit(y/ies)
+   * @returns id(s) of the desired entit(y/ies)
+   */
+  parseEntityIds(urls) {
+    if (typeof urls === 'string') {
+      let components = urls.split('/');
+      components.pop();
+      let id = parseInt(components.pop());
+      return id;
+    } else {
+      let ids = [];
+      for (let url of urls) {
+        let components = url.split('/');
+        components.pop();
+        ids.push(parseInt(components.pop()));
+      }
+      return ids;
     }
   }
 
