@@ -213,3 +213,5 @@ class DataProvider {
       });
   }
 }
+
+module.exports = {DataProvider};
