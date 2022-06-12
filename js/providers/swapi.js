@@ -1,5 +1,5 @@
-const axios = require('axios');
-const config = require('../config/config');
+const axios = require("axios");
+const config = require("../config/config");
 
 /**
  * @class
@@ -21,9 +21,9 @@ class DataProvider {
    */
   makeUrl(resource, id = null) {
     if (id) {
-      return [this.url.base, resource, id].join('/');
+      return [this.url.base, resource, id].join("/");
     } else {
-      return [this.url.base, resource].join('/');
+      return [this.url.base, resource].join("/");
     }
   }
 
@@ -33,18 +33,18 @@ class DataProvider {
    * @returns id(s) of the desired entit(y/ies)
    */
   parseEntityIds(urls) {
-    if (typeof urls === 'string') {
-      let components = urls.split('/');
+    if (typeof urls === "string") {
+      let components = urls.split("/");
       components.pop();
       let id = parseInt(components.pop());
       return id;
     } else {
       let ids = [];
-      /**
-       * @todo handle null arrays before entering the danger zone
-       */
+      if (urls.length === 0) {
+        return ids;
+      }
       for (let url of urls) {
-        let components = url.split('/');
+        let components = url.split("/");
         components.pop();
         ids.push(parseInt(components.pop()));
       }
@@ -64,7 +64,9 @@ class DataProvider {
       .get(url)
       .then((response) => {
         response.data.id = this.parseEntityIds(response.data.url);
-        response.data.characters = this.parseEntityIds(response.data.characters);
+        response.data.characters = this.parseEntityIds(
+          response.data.characters
+        );
         response.data.planets = this.parseEntityIds(response.data.planets);
         response.data.species = this.parseEntityIds(response.data.species);
         response.data.starships = this.parseEntityIds(response.data.starships);
