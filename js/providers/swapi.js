@@ -1,4 +1,4 @@
-const axios = require('axios');
+const axios = require('axios'); // a module to work with web API
 const config = require('../config/config');
 
 /**
@@ -8,13 +8,16 @@ const config = require('../config/config');
 class DataProvider {
   /**
    * @constructor
+   * Sets the url object to the defined object inside config.js to prevent
+   * using hard-coded strings.
    */
   constructor() {
     this.url = config.swapi.url;
   }
 
   /**
-   * Makes the URL for specified resource
+   * Makes the URL for specified resource by using the components defined in
+   * this.url object.
    * @param resource The desired resource
    * @returns The url for the specified resource or the specified id in the resource
    */
@@ -28,18 +31,23 @@ class DataProvider {
 
   /**
    * Parses the URL(s) and returns the ID(s) of the entit(y/ies)
+   * It helps to extracting IDs to get data to join e.g. a person's starship ID
+   * to get their starship ID information
    * @param urls the URL(s) to the desired entit(y/ies)
    * @returns id(s) of the desired entit(y/ies)
    */
   parseEntityIds(urls) {
     if (typeof urls === 'string') {
+      // The case that there is a single URL
       let components = urls.split('/');
-      components.pop();
+      components.pop(); // removes the empty string at the end of the array
       let id = parseInt(components.pop());
       return id;
     } else {
+      // The case that there is an array of URLs
       let ids = [];
       if (urls.length === 0) {
+        // The case that the array of URLs is empty
         return ids;
       }
       for (let url of urls) {
@@ -52,7 +60,9 @@ class DataProvider {
   }
 
   /**
-   * Parses a string containing integerseparated with radix character
+   * Parses a string containing integer separated with radix character
+   * E.g. there are attributes containing numbers each three digits separated
+   * by a comma. Here we remove commas and parse the string to an integer
    * @param {string} number a number string
    * @returns {number} clean and parsed number
    */
@@ -74,7 +84,9 @@ class DataProvider {
     return axios
       .get(url)
       .then((response) => {
+        // Adding the ID attribute to the entity by parsing it's URL
         response.data.id = this.parseEntityIds(response.data.url);
+        // Replacing the URLs with IDs
         response.data.characters = this.parseEntityIds(
           response.data.characters
         );
@@ -102,7 +114,9 @@ class DataProvider {
     return axios
       .get(url)
       .then((response) => {
+        // Adding the ID attribute to the entity by parsing it's URL
         response.data.id = this.parseEntityIds(response.data.url);
+        // Replacing the URLs with IDs
         response.data.homeworld = this.parseEntityIds(response.data.homeworld);
         response.data.films = this.parseEntityIds(response.data.films);
         response.data.species = this.parseEntityIds(response.data.species);
@@ -128,7 +142,9 @@ class DataProvider {
     return axios
       .get(url)
       .then((response) => {
+        // Adding the ID attribute to the entity by parsing it's URL
         response.data.id = this.parseEntityIds(response.data.url);
+        // Replacing the URLs with IDs
         response.data.residents = this.parseEntityIds(response.data.residents);
         response.data.films = this.parseEntityIds(response.data.films);
 
@@ -151,7 +167,9 @@ class DataProvider {
     return axios
       .get(url)
       .then((response) => {
+        // Adding the ID attribute to the entity by parsing it's URL
         response.data.id = this.parseEntityIds(response.data.url);
+        // Replacing the URLs with IDs
         response.data.homeworld = this.parseEntityIds(response.data.homeworld);
         response.data.people = this.parseEntityIds(response.data.people);
         response.data.films = this.parseEntityIds(response.data.films);
@@ -175,9 +193,12 @@ class DataProvider {
     return axios
       .get(url)
       .then((response) => {
+        // Adding the ID attribute to the entity by parsing it's URL
         response.data.id = this.parseEntityIds(response.data.url);
+        // Replacing the URLs with IDs
         response.data.pilots = this.parseEntityIds(response.data.pilots);
         response.data.films = this.parseEntityIds(response.data.films);
+        // Parsing the string of crew count to number
         response.data.crew = this.parseIntegerWithRadixCharacter(
           response.data.crew
         );
@@ -201,7 +222,9 @@ class DataProvider {
     return axios
       .get(url)
       .then((response) => {
+        // Adding the ID attribute to the entity by parsing it's URL
         response.data.id = this.parseEntityIds(response.data.url);
+        // Replacing the URLs with IDs
         response.data.pilots = this.parseEntityIds(response.data.pilots);
         response.data.films = this.parseEntityIds(response.data.films);
 

@@ -6,24 +6,29 @@ const swapi = require("../providers/swapi");
  * @param {Response} response which the data should be sent on
  */
 async function responseInformation(response) {
-  let provider = new swapi.DataProvider();
+  // Instanciating the data provider
+  const provider = new swapi.DataProvider();
 
+  // Instanciating the data models
   const personModel = new enetities.Person(provider);
   const starshipModel = new enetities.Starship(provider);
   const planetModel = new enetities.Planet(provider);
 
-  let darthVader = await personModel.getData(4);
-  let princessLeia = await personModel.getData(5);
-  let deathStar = await starshipModel.getData(9);
-  let darthVaderStarship = await starshipModel.getData(darthVader.starships[0]);
-  let alderaan = await planetModel.getData(2);
+  // Getting related entities to the problem
+  const darthVader = await personModel.getData(4);
+  const princessLeia = await personModel.getData(5);
+  const deathStar = await starshipModel.getData(9);
+  const darthVaderStarship = await starshipModel.getData(darthVader.starships[0]);
+  const alderaan = await planetModel.getData(2);
 
+  // Declaring the output base schema
   let information = {
     starship: {},
     crew: 0,
     isLeiaOnPlanet: false,
   };
 
+  // Filling the output schema with desired data
   information.starship.name = darthVaderStarship.name;
   information.starship.class = darthVaderStarship.starship_class;
   information.starship.model = darthVaderStarship.model;
@@ -35,6 +40,7 @@ async function responseInformation(response) {
     information.isLeiaOnPlanet = false;
   }
 
+  // sending the response
   response.send(information);
 }
 
