@@ -1,5 +1,5 @@
-const axios = require("axios");
-const config = require("../config/config");
+const axios = require('axios');
+const config = require('../config/config');
 
 /**
  * @class
@@ -20,9 +20,9 @@ class DataProvider {
    */
   makeUrl(resource, id = null) {
     if (id) {
-      return [this.url.base, resource, id].join("/");
+      return [this.url.base, resource, id].join('/');
     } else {
-      return [this.url.base, resource].join("/");
+      return [this.url.base, resource].join('/');
     }
   }
 
@@ -32,8 +32,8 @@ class DataProvider {
    * @returns id(s) of the desired entit(y/ies)
    */
   parseEntityIds(urls) {
-    if (typeof urls === "string") {
-      let components = urls.split("/");
+    if (typeof urls === 'string') {
+      let components = urls.split('/');
       components.pop();
       let id = parseInt(components.pop());
       return id;
@@ -43,7 +43,7 @@ class DataProvider {
         return ids;
       }
       for (let url of urls) {
-        let components = url.split("/");
+        let components = url.split('/');
         components.pop();
         ids.push(parseInt(components.pop()));
       }
@@ -57,8 +57,8 @@ class DataProvider {
    * @returns {number} clean and parsed number
    */
   parseIntegerWithRadixCharacter(number) {
-    while (number.includes(",")) {
-      number = number.replace(",", "");
+    while (number.includes(',')) {
+      number = number.replace(',', '');
     }
     return parseInt(number);
   }
@@ -141,6 +141,30 @@ class DataProvider {
   }
 
   /**
+   * Provides a species's data
+   * @param speciesId The ID of the species in the database
+   * @returns species's data / error
+   */
+  getSpeciesData(speciesId) {
+    let url = this.makeUrl(this.url.species, speciesId);
+
+    return axios
+      .get(url)
+      .then((response) => {
+        response.data.id = this.parseEntityIds(response.data.url);
+        response.data.homeworld = this.parseEntityIds(response.data.homeworld);
+        response.data.people = this.parseEntityIds(response.data.people);
+        response.data.films = this.parseEntityIds(response.data.films);
+
+        return response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+        return Promise.reject(error);
+      });
+  }
+
+  /**
    * Provides a starship's data
    * @param starshipId The ID of the starship in the database
    * @returns starship's data / error
@@ -154,7 +178,9 @@ class DataProvider {
         response.data.id = this.parseEntityIds(response.data.url);
         response.data.pilots = this.parseEntityIds(response.data.pilots);
         response.data.films = this.parseEntityIds(response.data.films);
-        response.data.crew = this.parseIntegerWithRadixCharacter(response.data.crew);
+        response.data.crew = this.parseIntegerWithRadixCharacter(
+          response.data.crew
+        );
 
         return response.data;
       })
