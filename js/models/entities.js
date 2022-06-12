@@ -34,7 +34,6 @@ class Person {
   }
 }
 
-
 /**
  * @class
  * The container class for planets
@@ -73,6 +72,3 @@ class Vehicle {
     this.data = provider.getVehicleData(vehicleId);
   }
 }
-
-
-
