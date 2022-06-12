@@ -49,6 +49,19 @@ class Planet {
 
 /**
  * @class
+ * The container class for species
+ */
+class Species {
+  /**
+   * @constructor
+   */
+  constructor(provider, speciesId) {
+    this.data = provider.getSpeciesData(speciesId);
+  }
+}
+
+/**
+ * @class
  * The container class for starships
  */
 class Starship {
