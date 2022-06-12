@@ -4,6 +4,7 @@
  * Film,
  * Person,
  * Planet,
+ * Species,
  * Starship,
  * Vehicle
  */
@@ -16,8 +17,17 @@ class Film {
   /**
    * @constructor
    */
-  constructor(provider, filmId) {
-    this.data = provider.getFilmData(filmId);
+  constructor(provider) {
+    this.provider = provider
+  }
+
+  /**
+   * Gets film's data from specified data provider and returns it
+   * @param {number} id 
+   * @returns film's data
+   */
+  getData(id) {
+    return this.provider.getFilmData(id);
   }
 }
 
@@ -29,8 +39,17 @@ class Person {
   /**
    * @constructor
    */
-  constructor(provider, personId) {
-    this.data = provider.getPersonData(personId);
+  constructor(provider) {
+    this.provider = provider
+  }
+
+  /**
+   * Gets person's data from specified data provider and returns it
+   * @param {number} id 
+   * @returns person's data
+   */
+  getData(id) {
+    return this.provider.getPersonData(id);
   }
 }
 
@@ -42,8 +61,17 @@ class Planet {
   /**
    * @constructor
    */
-  constructor(provider, planetId) {
-    this.data = provider.getPlanetData(planetId);
+  constructor(provider) {
+    this.provider = provider
+  }
+
+  /**
+   * Gets planet's data from specified data provider and returns it
+   * @param {number} id 
+   * @returns planet's data
+   */
+  getData(id) {
+    return this.provider.getPlanetData(id);
   }
 }
 
@@ -55,8 +83,17 @@ class Species {
   /**
    * @constructor
    */
-  constructor(provider, speciesId) {
-    this.data = provider.getSpeciesData(speciesId);
+  constructor(provider) {
+    this.provider = provider
+  }
+
+  /**
+   * Gets species's data from specified data provider and returns it
+   * @param {number} id 
+   * @returns species's data
+   */
+  getData(id) {
+    return this.provider.getSpeciesData(id);
   }
 }
 
@@ -68,8 +105,17 @@ class Starship {
   /**
    * @constructor
    */
-  constructor(provider, starshipId) {
-    this.data = provider.getStarshipData(starshipId);
+  constructor(provider) {
+    this.provider = provider
+  }
+
+  /**
+   * Gets starship's data from specified data provider and returns it
+   * @param {number} id 
+   * @returns starship's data
+   */
+  getData(id) {
+    return this.provider.getStarshipData(id);
   }
 }
 
@@ -81,8 +127,17 @@ class Vehicle {
   /**
    * @constructor
    */
-  constructor(provider, vehicleId) {
-    this.data = provider.getVehicleData(vehicleId);
+  constructor(provider) {
+    this.provider = provider
+  }
+
+  /**
+   * Gets vehicle's data from specified data provider and returns it
+   * @param {number} id 
+   * @returns vehicle's data
+   */
+  getData(id) {
+    return this.provider.getVehicleData(id);
   }
 }
 
