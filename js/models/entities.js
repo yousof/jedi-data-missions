@@ -85,3 +85,5 @@ class Vehicle {
     this.data = provider.getVehicleData(vehicleId);
   }
 }
+
+module.exports = { Film, Person, Planet, Species, Starship, Vehicle };
