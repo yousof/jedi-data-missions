@@ -103,5 +103,11 @@ Now you are done with the data and it's time to draw swords and save the world. 
 sudo docker stop jedi-data-missions-js
 ```
 
+## Test
+The test cases and tests' codes are included in the project. They can be run using this command in the project's main path:
+```
+npm test
+```
+
 ## Suggestions
 In the first mission, The Jedi High Council asked me to find out how many crew are on the Death Star, and it was a number. It was easy to parse that integer and present it to them. But, if there happens a mission to find something about a starship like "CR90 corvette", things change. The "crew" field contains "30-165" which seems to be a range. The world is not secure all the time so we can communicate and redefine the mission. I found this issue while exploring the data and I must report. Please take care of it for the next missions especially if my other colleagues are going to do the mission.
