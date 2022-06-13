@@ -1,3 +1,4 @@
+const config = require('../config/config')
 const enetities = require("../models/entities");
 const swapi = require("../providers/swapi");
 
@@ -15,11 +16,11 @@ async function responseInformation(response) {
   const planetModel = new enetities.Planet(provider);
 
   // Getting related entities to the problem
-  const darthVader = await personModel.getData(4);
-  const princessLeia = await personModel.getData(5);
-  const deathStar = await starshipModel.getData(9);
+  const darthVader = await personModel.getData(config.entityIds.darthVaderId);
+  const princessLeia = await personModel.getData(config.entityIds.princessLeiaId);
+  const deathStar = await starshipModel.getData(config.entityIds.deathStarId);
   const darthVaderStarship = await starshipModel.getData(darthVader.starships[0]);
-  const alderaan = await planetModel.getData(2);
+  const alderaan = await planetModel.getData(config.entityIds.alderaanId);
 
   // Declaring the output base schema
   let information = {
