@@ -46,7 +46,7 @@ class Person {
   /**
    * Gets person's data from specified data provider and returns it
    * @param {number} id 
-   * @returns person's data
+   * @returns {object} person's data
    */
   getData(id) {
     return this.provider.getPersonData(id);
@@ -68,7 +68,7 @@ class Planet {
   /**
    * Gets planet's data from specified data provider and returns it
    * @param {number} id 
-   * @returns planet's data
+   * @returns {object} planet's data
    */
   getData(id) {
     return this.provider.getPlanetData(id);
@@ -90,7 +90,7 @@ class Species {
   /**
    * Gets species's data from specified data provider and returns it
    * @param {number} id 
-   * @returns species's data
+   * @returns {object} species's data
    */
   getData(id) {
     return this.provider.getSpeciesData(id);
@@ -112,7 +112,7 @@ class Starship {
   /**
    * Gets starship's data from specified data provider and returns it
    * @param {number} id 
-   * @returns starship's data
+   * @returns {object} starship's data
    */
   getData(id) {
     return this.provider.getStarshipData(id);
@@ -134,7 +134,7 @@ class Vehicle {
   /**
    * Gets vehicle's data from specified data provider and returns it
    * @param {number} id 
-   * @returns vehicle's data
+   * @returns {object} vehicle's data
    */
   getData(id) {
     return this.provider.getVehicleData(id);

@@ -18,8 +18,8 @@ class DataProvider {
   /**
    * Makes the URL for specified resource by using the components defined in
    * this.url object.
-   * @param resource The desired resource
-   * @returns The url for the specified resource or the specified id in the resource
+   * @param {string} resource The desired resource
+   * @returns {string} The url for the specified resource or the specified id in the resource
    */
   makeUrl(resource, id = null) {
     if (id) {
@@ -33,8 +33,8 @@ class DataProvider {
    * Parses the URL(s) and returns the ID(s) of the entit(y/ies)
    * It helps to extracting IDs to get data to join e.g. a person's starship ID
    * to get their starship ID information
-   * @param urls the URL(s) to the desired entit(y/ies)
-   * @returns id(s) of the desired entit(y/ies)
+   * @param {(string|Array)} urls the URL(s) to the desired entit(y/ies)
+   * @returns {(number|Array)} id(s) of the desired entit(y/ies)
    */
   parseEntityIds(urls) {
     if (typeof urls === 'string') {
@@ -75,8 +75,8 @@ class DataProvider {
 
   /**
    * Provides a film's data
-   * @param filmId The ID of the film in the database
-   * @returns film's data / error
+   * @param {number} filmId The ID of the film in the database
+   * @returns {(object|Promise.error)} film's data / error
    */
   getFilmData(filmId) {
     let url = this.makeUrl(this.url.films, filmId);
@@ -105,8 +105,8 @@ class DataProvider {
 
   /**
    * Provides a person's data
-   * @param personId The ID of the person in the database
-   * @returns person's data / error
+   * @param {number} personId The ID of the person in the database
+   * @returns {(object|Promise.error)} person's data / error
    */
   getPersonData(personId) {
     let url = this.makeUrl(this.url.people, personId);
@@ -133,8 +133,8 @@ class DataProvider {
 
   /**
    * Provides a planet's data
-   * @param planetId The ID of the planet in the database
-   * @returns planet's data / error
+   * @param {number} planetId The ID of the planet in the database
+   * @returns {(object|Promise.error)} planet's data / error
    */
   getPlanetData(planetId) {
     let url = this.makeUrl(this.url.planets, planetId);
@@ -158,8 +158,8 @@ class DataProvider {
 
   /**
    * Provides a species's data
-   * @param speciesId The ID of the species in the database
-   * @returns species's data / error
+   * @param {number} speciesId The ID of the species in the database
+   * @returns {(object|Promise.error)} species's data / error
    */
   getSpeciesData(speciesId) {
     let url = this.makeUrl(this.url.species, speciesId);
@@ -184,8 +184,8 @@ class DataProvider {
 
   /**
    * Provides a starship's data
-   * @param starshipId The ID of the starship in the database
-   * @returns starship's data / error
+   * @param {number} starshipId The ID of the starship in the database
+   * @returns {(object|Promise.error)} starship's data / error
    */
   getStarshipData(starshipId) {
     let url = this.makeUrl(this.url.starships, starshipId);
@@ -213,8 +213,8 @@ class DataProvider {
 
   /**
    * Provides a vehicle's data
-   * @param vehicleId The ID of the vehicle in the database
-   * @returns vehicle's data / error
+   * @param {number} vehicleId The ID of the vehicle in the database
+   * @returns {(object|Promise.error)} vehicle's data / error
    */
   getVehicleData(vehicleId) {
     let url = this.makeUrl(this.url.vehicles, vehicleId);
