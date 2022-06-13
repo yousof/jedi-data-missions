@@ -1,6 +1,6 @@
 const config = require('../config/config')
-const enetities = require("../models/entities");
-const swapi = require("../providers/swapi");
+const enetities = require('../models/entities');
+const swapi = require('../providers/swapi');
 
 /**
  * Gathers required data from data provider and prepares the desired output
