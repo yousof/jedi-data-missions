@@ -1,7 +1,7 @@
 const express = require("express"); // A Node.js web application framework
 
 // The potential attack defined to be investigated
-const attack = require("./queries/dark-vader-attack-on-alderaan");
+const attack = require("./queries/darth-vader-attack-on-alderaan");
 
 // Creating the application
 const app = express();
