@@ -20,8 +20,7 @@ $ cd ~/Downloads/jedi-data-missions/js
 
 To install the required packages run the following commands:
 ```
-npm i axios
-npm i express
+npm install
 ```
 
 Axios is a package I used for developing my data provider and getting data from [swapi.dev](https://swapi.dev).
